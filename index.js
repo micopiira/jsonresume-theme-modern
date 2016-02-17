@@ -2,16 +2,16 @@ var fs = require('fs');
 var gravatar = require('gravatar');
 var _ = require('lodash')
 var Mustache = require('mustache');
+var dateFormat = require('dateformat');
 
 function render(resumeObject) {
 
-
 	_.each(resumeObject.work, function(w){
-		w.startDateYear = w.startDate.substr(0,4);
+		w.startDateYear = dateFormat(w.startDate, "mm/yyyy");
 		if(w.endDate) {
-			w.endDateYear = w.endDate.substr(0,4);
+			w.endDateYear = dateFormat(w.endDate, "mm/yyyy");
 		} else { 
-			w.endDateYear = 'Present'
+			w.endDateYear = ''
 		}
 	});
 	_.each(resumeObject.education, function(e){
@@ -20,11 +20,11 @@ function render(resumeObject) {
     }  else {
       e.educationDetail = e.area + ", "+ e.studyType;
     }
-		e.startDateYear = e.startDate.substr(0,4);
+		e.startDateYear = dateFormat(e.startDate, "mm/yyyy");
 		if(e.endDate) {
-			e.endDateYear = e.endDate.substr(0,4);
+			e.endDateYear = dateFormat(e.endDate, "mm/yyyy");
 		}  else { 
-			e.endDateYear = 'Present'
+			e.endDateYear = ''
 		}
 	});
 	if(resumeObject.basics && resumeObject.basics.email) {
@@ -35,6 +35,7 @@ function render(resumeObject) {
                     });
 	}
 	resumeObject.profiles = {};
+    resumeObject.currentDate = dateFormat(new Date(), "dd.mm.yyyy");
 
 	_.each(resumeObject.basics.profiles, function(profile){
     	resumeObject.profiles[profile.network] = profile.username;
