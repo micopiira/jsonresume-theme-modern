@@ -10,6 +10,7 @@
     <style>
       .container {
         margin-top: 15px;
+        margin-bottom: 15px;
         max-width: 960px;
       }
     </style>
@@ -98,8 +99,24 @@
           </div>
         </div>
       </div>
-      {{/education.length}} 
-      {{#skills.length}}
+      {{/education.length}}
+      <div class="row">
+        <div class="col-md-3">
+          <h3>Kielitaito</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9 col-md-offset-3">
+          {{#languages}}
+            <div class="row">
+              <div class="col-md-3"><strong>{{language}}</strong></div>
+              <div class="col-md-9">{{fluency}}</div>
+            </div>
+          {{/languages}}
+          {{#skills.length}}
+        </div>
+      </div>
+
       <section class="row">
         <header class="col-md-3">
           <h3>Taidot</h3>
