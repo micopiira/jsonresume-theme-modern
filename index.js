@@ -1,5 +1,4 @@
 var fs = require('fs');
-var gravatar = require('gravatar');
 var _ = require('lodash')
 var Mustache = require('mustache');
 var dateFormat = require('dateformat');
@@ -27,13 +26,7 @@ function render(resumeObject) {
 			e.endDateYear = ''
 		}
 	});
-	if(resumeObject.basics && resumeObject.basics.email) {
-		resumeObject.basics.gravatar = gravatar.url(resumeObject.basics.email, {
-                        s: '100',
-                        r: 'pg',
-                        d: 'mm'
-                    });
-	}
+
 	resumeObject.profiles = {};
     resumeObject.currentDate = dateFormat(new Date(), "dd.mm.yyyy");
 
